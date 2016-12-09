@@ -11,15 +11,19 @@ npm install
 
 #### Commands:
 ```
-npm run build
-```
-Run webpack to create bundle under directory 'build'
-
-```
-npm run start
+npm run preview
 ```
 Start webpack-dev-server (iframe mode) with HMR.
-The default configuration omitted '--open', access <a href="http://localhost:8080/webpack-dev-server/">http://localhost:8080/webpack-dev-server/</a> to preview.
+
+```
+npm run build
+```
+Run webpack using production configuration and write to build directory
+
+```
+npm run serve
+```
+Serve the static files under build directory (using <a href="https://www.npmjs.com/package/http-server">http-server</a>)
 
 
 #### Future Works

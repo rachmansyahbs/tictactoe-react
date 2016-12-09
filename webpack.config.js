@@ -23,7 +23,10 @@ var config = {
 
   context: path.resolve(__dirname, 'src'),
 
+  devtool: 'eval',
+
   devServer: {
+    open: true,
     contentBase: path.resolve(__dirname, 'build'),
     publicPath: '/'
   },
