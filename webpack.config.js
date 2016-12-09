@@ -1,6 +1,9 @@
 try {
   var path = require('path');
   var webpack = require('webpack');
+  var srcPath = path.resolve(__dirname, 'src');
+  var buildPath = path.resolve(__dirname, 'build');
+  var indexHtmlPath = path.resolve(__dirname, 'src', 'index.html');
   var HtmlWebpackPlugin = require('html-webpack-plugin');
 }
 catch (e) {
@@ -17,17 +20,17 @@ var config = {
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
+    path: buildPath,
     publicPath: '/'
   },
 
-  context: path.resolve(__dirname, 'src'),
+  context: srcPath,
 
   devtool: 'eval',
 
   devServer: {
     open: true,
-    contentBase: path.resolve(__dirname, 'build'),
+    contentBase: buildPath,
     publicPath: '/'
   },
 
@@ -52,7 +55,7 @@ var config = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve(__dirname, 'src/index.html')
+      template: indexHtmlPath
     }),
     new webpack.NamedModulesPlugin()
   ]
