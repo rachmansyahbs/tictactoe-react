@@ -1,0 +1,28 @@
+.scoreboard-wrapper {
+  display: flex;
+}
+.score-wrapper {
+  flex: 1 1 0;
+  padding: 10px;
+  background-color: #aaa;
+  color: #eee;
+  text-align: center;
+}
+.score-wrapper--1 {
+  border-right: 1px solid #fff;
+}
+.score-wrapper--1.score-wrapper--activeturn {
+  background-color: #4F87A2;  
+}
+.score-wrapper--2 {
+  border-left: 1px solid #fff;
+}
+.score-wrapper--2.score-wrapper--activeturn {
+  background-color: #DA4F49;
+}
+.score-wrapper__score {
+  font-size: 2em;
+}
+.score-wrapper.score-wrapper--gameends {
+  background-color: #aaa !important;
+}

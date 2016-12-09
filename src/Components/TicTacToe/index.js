@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import utils from '../scripts/utils';
-import {EMPTY, PLAYER_1, PLAYER_1_SIGN, PLAYER_2, PLAYER_2_SIGN, BOARD_SIZE} from '../data/game_constants';
+import utils from '../../scripts/utils';
+import {EMPTY, PLAYER_1, PLAYER_1_SIGN, PLAYER_2, PLAYER_2_SIGN, BOARD_SIZE} from '../../data/game_constants';
 
-import TTTBoard from './TTTBoard';
+import TTTBoard from '../TTTBoard';
+import {TTTPlayerLabel, TTTScore, TTTScoreBoard} from '../TTTScoreBoard';
+import TTTGameResult from '../TTTGameResult';
 
-import {TTTPlayerLabel, TTTScore, TTTScoreBoard} from './TTTScoreBoard';
+import stylesheet from './stylesheet.css';
 
 export default class TicTacToe extends React.Component {
   constructor(props) {
@@ -71,19 +73,21 @@ export default class TicTacToe extends React.Component {
   }
 
   startNewGame() {
-    // Intentionally not resetting the player's turn
-    // Player that made the last move in the previous game (whether it ends up in draw or win for the player) will move second in this game
+    // Reset board
     this.setState({
       board: utils.createMatrix(BOARD_SIZE, EMPTY)
-    })
+    });
+    // Set the turn to the other player
+    // (Player that made the last move in the previous game (whether it ends up in draw or win for the player) will move second in this game)
+    this.changePlayerTurn();
   }
 
   resetGameScores() {
     this.setState({
-      current_player: PLAYER_1,
       scores: [0, 0]
     });
     this.startNewGame();
+    this.changePlayerTurn(PLAYER_1);
   }
 
   makeMove(row_index, col_index) {
@@ -105,21 +109,29 @@ export default class TicTacToe extends React.Component {
 
     board[row_index][col_index] = current_player;
 
-    var next_player = current_player % 2 + 1;
-
-    var new_state = {
-      current_player: next_player,
-      board: board
-    }
-
     // Check winner
     var winner = this.checkWinner();
     if(winner) {
       this.addScore(winner.winner);
+      return;
     }
 
-    // Update state
-    this.setState(new_state);
+    // Update board
+    this.setState({
+      board: board
+    });
+    // Shift turn
+    this.changePlayerTurn()
+  }
+
+  changePlayerTurn() {
+    var next_player = this.state.current_player % 2 + 1;
+    if(arguments.length > 0 && [PLAYER_1, PLAYER_2].indexOf(arguments[0]) >= 0) {
+      next_player = arguments[0];
+    }
+    this.setState({
+      current_player: next_player
+    });
   }
 
   addScore(player) {
@@ -130,8 +142,8 @@ export default class TicTacToe extends React.Component {
 
   getPlayers() {
     return [
-      {name: "Player 1", sign: PLAYER_1_SIGN, score: this.state.scores[0]},
-      {name: "Player 2", sign: PLAYER_2_SIGN, score: this.state.scores[1]},
+      {index: PLAYER_1, name: "Player 1", sign: PLAYER_1_SIGN, score: this.state.scores[0], turn_active: this.state.current_player == PLAYER_1},
+      {index: PLAYER_2, name: "Player 2", sign: PLAYER_2_SIGN, score: this.state.scores[1], turn_active: this.state.current_player == PLAYER_2},
     ];
   }
 
@@ -149,13 +161,9 @@ export default class TicTacToe extends React.Component {
     );
 
     return (
-      <div>
-        <TTTScoreBoard players={players} />
+      <div className={"game  game--finished game--1"}>
+        <TTTScoreBoard players={players} gamefinished={is_game_finished} />
         <div>
-          {is_game_finished ? 
-            winner_text : 
-            <div>{current_player_text}'s Turn</div>
-          } 
         </div>
 
         <TTTBoard
@@ -164,10 +172,11 @@ export default class TicTacToe extends React.Component {
         />
 
         {is_game_finished &&
-        <div>
-          <button onClick={this.startNewGame.bind(this)}>Play Again</button>
-          <button onClick={this.resetGameScores.bind(this)}>Reset Scores</button>
-        </div>
+          <TTTGameResult 
+            onStartNew={this.startNewGame.bind(this)} 
+            onReset={this.resetGameScores.bind(this)} 
+            result={winner_index}
+          />
         }
       </div>
     );
