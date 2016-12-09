@@ -1,6 +1,6 @@
 {
   "name": "tictactoe-react",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Tic-Tac-Toe (utilizing React)",
   "private": true,
   "dependencies": {
