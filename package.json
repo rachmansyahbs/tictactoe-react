@@ -1,0 +1,28 @@
+{
+  "name": "tictactoe-react",
+  "version": "0.0.1",
+  "description": "Tic-Tac-Toe (utilizing React)",
+  "private": true,
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "author": "Rachmansyah Budi Setiawan",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "html-webpack-plugin": "^2.24.1",
+    "react-hot-loader": "^3.0.0-beta.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  }
+}
