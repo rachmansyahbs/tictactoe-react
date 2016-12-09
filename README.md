@@ -1,12 +1,27 @@
-TIC TAC TOE - with React
+# TIC TAC TOE - with React
 
----
+Just another React-based app.
+This is my take on Tic Tac Toe game, implemented with React and built with Webpack.
 
-The MIT License (MIT)
-Copyright (c) 2016 Rachmansyah Budi Setiawan
+Don't forget
+```
+npm install
+```
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#### Commands:
+```
+npm run build
+```
+Run webpack to create bundle under directory 'build'
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+npm run start
+```
+Start webpack-dev-server (iframe mode) with HMR.
+The default configuration omitted '--open', access <a href="http://localhost:8080/webpack-dev-server/">http://localhost:8080/webpack-dev-server/</a> to preview.
+
+
+#### Future Works
+This implementation is far from perfect, mainly built to get my feet wet with using React and tinkering with webpack config.
+Let me know if this project helps you in one way or another!
