@@ -37,6 +37,10 @@ var config = {
         query: {
           presets: ['es2015', 'stage-2', 'react']
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       }
     ]
   },

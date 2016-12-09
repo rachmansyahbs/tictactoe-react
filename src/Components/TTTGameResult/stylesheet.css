@@ -1,0 +1,49 @@
+.gameresult {
+  text-align: center;
+  padding: 10px;
+}
+
+.gameresult__status {
+  font-size: 1.5em;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #aaa;
+  color: #eee;
+}
+.gameresult__status--1 {
+  background-color: #4F87A2;
+}
+.gameresult__status--2 {
+  background-color: #DA4F49;
+}
+
+.gameresult__actions {
+
+}
+
+.gameresult__actionbutton {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #ccc;
+  color: #eee;
+  font-size: 1em;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+.gameresult__actionbutton:hover {
+  background-color: #aaa;
+  border-color: #999;
+  cursor: pointer;
+}
+.gameresult__actionbutton--newgame {
+  background-color: #699DB6;
+}
+.gameresult__actionbutton--newgame:hover {
+  background-color: #4F87A2;
+}
+.gameresult__actionbutton--reset {
+  background-color: #E48681;
+}
+.gameresult__actionbutton--reset:hover {
+  background-color: #DA4F49;
+}

@@ -1,0 +1,19 @@
+.board__cell {
+  flex: 1 1 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: calc(100%/3);
+  height: 100%;
+  cursor: pointer;
+  font: 'Helvetica' arial;
+  font-size: 100px;
+  line-height: 100px;
+  text-align: center;
+}
+.board__cell--1 {
+  color: #4F87A2;
+}
+.board__cell--2 {
+  color: #DA4F49;
+}
