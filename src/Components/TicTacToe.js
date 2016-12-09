@@ -4,27 +4,7 @@ import ReactDOM from 'react-dom';
 import utils from '../scripts/utils';
 import {EMPTY, PLAYER_1, PLAYER_1_SIGN, PLAYER_2, PLAYER_2_SIGN, BOARD_SIZE} from '../data/game_constants';
 
-// DEBUG
-// inline style
-const board_style = {
-  width: "300px",
-  height: "300px",
-  border: "2px solid black",
-  boxSizing: "border-box"
-}
-const row_style = {
-  display: "flex",
-  height: "calc(100%/3)"
-}
-const cell_style = {
-  "flex": "1 1 0",
-  border: "1px solid black",
-  boxSizing: "border-box",
-  width: "calc(100%/3)",
-  height: "100%",
-  cursor: "pointer"
-}
-// 
+import TTTBoard from './TTTBoard';
 
 class TTTPlayerLabel extends React.Component {
   render() {
@@ -53,45 +33,6 @@ class TTTScoreBoard extends React.Component {
       <div>
         <TTTScore player_name={this.props.players[0].name} player_sign={this.props.players[0].sign} score={this.props.players[0].score} />
         <TTTScore player_name={this.props.players[1].name} player_sign={this.props.players[1].sign} score={this.props.players[1].score} />
-      </div>
-    );
-  }
-}
-
-class TTTCell extends React.Component {
-  render() {
-    return (
-      <div key={"col-" + (this.props.row_index + 1) + "-" + (this.props.col_index + 1)} 
-        className="board__col" style={cell_style}
-        onClick={this.props.onClick}
-      >
-      {this.props.cell_value == EMPTY && ""}
-      {this.props.cell_value == PLAYER_1 && "X"}
-      {this.props.cell_value == PLAYER_2 && "O"}
-      </div>
-    );
-  }  
-}
-
-class TTTRow extends React.Component {
-  renderCell(cell, col_i, row_i) {
-    return (
-      <TTTCell key={"cell-" + (row_i + 1) + "-" + (col_i + 1)}
-        row_index={row_i}
-        col_index={col_i}
-        cell_value={cell}
-        onClick={() => this.props.onClickCell(row_i, col_i)}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <div key={"row-" + (this.props.row_index + 1)} 
-        className="board__row" 
-        style={row_style}
-      >
-      {this.props.row.map((cell, col_index) => this.renderCell(cell, col_index, this.props.row_index))}
       </div>
     );
   }
@@ -247,13 +188,10 @@ export default class TicTacToe extends React.Component {
           } 
         </div>
 
-        <div className="board" style={board_style}>
-          {this.state.board.map((row, row_i) => (
-          <TTTRow key={"row" + (row_i + 1)}
-            row={row} row_index={row_i} onClickCell={this.makeMove.bind(this)}
-          />
-          ))}
-        </div>
+        <TTTBoard
+          board={this.state.board}
+          makeMove={this.makeMove.bind(this)}
+        />
 
         {is_game_finished &&
         <div>
